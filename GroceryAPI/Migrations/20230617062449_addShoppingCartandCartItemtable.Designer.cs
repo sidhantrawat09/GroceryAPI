@@ -4,6 +4,7 @@ using GroceryAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GroceryAPI.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20230617062449_addShoppingCartandCartItemtable")]
+    partial class addShoppingCartandCartItemtable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -150,6 +152,9 @@ namespace GroceryAPI.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("SpecialTag")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Specification")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -166,9 +171,10 @@ namespace GroceryAPI.Migrations
                             Category = "Appetizer",
                             Description = "Fusc tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
                             Discount = 0m,
-                            Image = "",
+                            Image = "https://temp.blob.core.windows.net/redmango/spring roll.jpg",
                             Price = 7.9900000000000002,
-                            ProductName = "Spring Roll"
+                            ProductName = "Spring Roll",
+                            SpecialTag = ""
                         },
                         new
                         {
@@ -177,9 +183,10 @@ namespace GroceryAPI.Migrations
                             Category = "Appetizer",
                             Description = "Fusc tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
                             Discount = 0m,
-                            Image = "",
+                            Image = "https://temp.blob.core.windows.net/redmango/idli.jpg",
                             Price = 8.9900000000000002,
-                            ProductName = "Idli"
+                            ProductName = "Idli",
+                            SpecialTag = ""
                         },
                         new
                         {
@@ -188,9 +195,10 @@ namespace GroceryAPI.Migrations
                             Category = "Appetizer",
                             Description = "Fusc tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
                             Discount = 0m,
-                            Image = "",
+                            Image = "https://temp.blob.core.windows.net/redmango/pani puri.jpg",
                             Price = 8.9900000000000002,
-                            ProductName = "Panu Puri"
+                            ProductName = "Panu Puri",
+                            SpecialTag = "Best Seller"
                         },
                         new
                         {
@@ -199,9 +207,10 @@ namespace GroceryAPI.Migrations
                             Category = "Entrée",
                             Description = "Fusc tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
                             Discount = 0m,
-                            Image = "",
+                            Image = "https://temp.blob.core.windows.net/redmango/hakka noodles.jpg",
                             Price = 10.99,
-                            ProductName = "Hakka Noodles"
+                            ProductName = "Hakka Noodles",
+                            SpecialTag = ""
                         },
                         new
                         {
@@ -210,9 +219,10 @@ namespace GroceryAPI.Migrations
                             Category = "Entrée",
                             Description = "Fusc tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
                             Discount = 0m,
-                            Image = "",
+                            Image = "https://temp.blob.core.windows.net/redmango/malai kofta.jpg",
                             Price = 12.99,
-                            ProductName = "Malai Kofta"
+                            ProductName = "Malai Kofta",
+                            SpecialTag = "Top Rated"
                         },
                         new
                         {
@@ -221,9 +231,10 @@ namespace GroceryAPI.Migrations
                             Category = "Entrée",
                             Description = "Fusc tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
                             Discount = 0m,
-                            Image = "",
+                            Image = "https://temp.blob.core.windows.net/redmango/paneer pizza.jpg",
                             Price = 11.99,
-                            ProductName = "Paneer Pizza"
+                            ProductName = "Paneer Pizza",
+                            SpecialTag = ""
                         },
                         new
                         {
@@ -232,9 +243,10 @@ namespace GroceryAPI.Migrations
                             Category = "Entrée",
                             Description = "Fusc tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
                             Discount = 0m,
-                            Image = "",
+                            Image = "https://temp.blob.core.windows.net/redmango/paneer tikka.jpg",
                             Price = 13.99,
-                            ProductName = "Paneer Tikka"
+                            ProductName = "Paneer Tikka",
+                            SpecialTag = "Chef's Special"
                         },
                         new
                         {
@@ -243,9 +255,10 @@ namespace GroceryAPI.Migrations
                             Category = "Dessert",
                             Description = "Fusc tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
                             Discount = 0m,
-                            Image = "",
+                            Image = "https://temp.blob.core.windows.net/redmango/carrot love.jpg",
                             Price = 4.9900000000000002,
-                            ProductName = "Carrot Love"
+                            ProductName = "Carrot Love",
+                            SpecialTag = ""
                         },
                         new
                         {
@@ -254,9 +267,10 @@ namespace GroceryAPI.Migrations
                             Category = "Dessert",
                             Description = "Fusc tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
                             Discount = 0m,
-                            Image = "",
+                            Image = "https://temp.blob.core.windows.net/redmango/rasmalai.jpg",
                             Price = 4.9900000000000002,
-                            ProductName = "Rasmalai"
+                            ProductName = "Rasmalai",
+                            SpecialTag = "Chef's Special"
                         },
                         new
                         {
@@ -265,74 +279,11 @@ namespace GroceryAPI.Migrations
                             Category = "Dessert",
                             Description = "Fusc tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
                             Discount = 0m,
-                            Image = "",
+                            Image = "https://temp.blob.core.windows.net/redmango/sweet rolls.jpg",
                             Price = 3.9900000000000002,
-                            ProductName = "Sweet Rolls"
+                            ProductName = "Sweet Rolls",
+                            SpecialTag = "Top Rated"
                         });
-                });
-
-            modelBuilder.Entity("GroceryAPI.Models.OrderDetails", b =>
-                {
-                    b.Property<int>("OrderDetailId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderDetailId"), 1L, 1);
-
-                    b.Property<string>("ItemName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("MenuItemId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrderHeaderId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("OrderDetailId");
-
-                    b.HasIndex("MenuItemId");
-
-                    b.HasIndex("OrderHeaderId");
-
-                    b.ToTable("OrderDetails");
-                });
-
-            modelBuilder.Entity("GroceryAPI.Models.OrderHeader", b =>
-                {
-                    b.Property<int>("OrderHeaderId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderHeaderId"), 1L, 1);
-
-                    b.Property<string>("ApplicationUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("OrderDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double>("OrderTotal")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TotalItems")
-                        .HasColumnType("int");
-
-                    b.HasKey("OrderHeaderId");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.ToTable("OrderHeaders");
                 });
 
             modelBuilder.Entity("GroceryAPI.Models.ShoppingCart", b =>
@@ -501,34 +452,6 @@ namespace GroceryAPI.Migrations
                     b.Navigation("MenuItem");
                 });
 
-            modelBuilder.Entity("GroceryAPI.Models.OrderDetails", b =>
-                {
-                    b.HasOne("GroceryAPI.Models.MenuItem", "MenuItem")
-                        .WithMany()
-                        .HasForeignKey("MenuItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("GroceryAPI.Models.OrderHeader", null)
-                        .WithMany("OrderDetails")
-                        .HasForeignKey("OrderHeaderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("MenuItem");
-                });
-
-            modelBuilder.Entity("GroceryAPI.Models.OrderHeader", b =>
-                {
-                    b.HasOne("GroceryAPI.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -578,11 +501,6 @@ namespace GroceryAPI.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("GroceryAPI.Models.OrderHeader", b =>
-                {
-                    b.Navigation("OrderDetails");
                 });
 
             modelBuilder.Entity("GroceryAPI.Models.ShoppingCart", b =>
