@@ -23,8 +23,7 @@ namespace GroceryAPI.Controllers
             response = new ApiResponse();
             _mapper = mapper;
         }
-
-        [Authorize(Roles = SD.Role_Admin)]
+    
         [HttpGet]
         public async Task<IActionResult> GetMenuItems()
         {
@@ -123,7 +122,6 @@ namespace GroceryAPI.Controllers
                     item.Description = menuItemUpdateDto.Description;
                     item.Price = menuItemUpdateDto.Price;
                     item.Specification = menuItemUpdateDto.Specification;
-                    item.SpecialTag = menuItemUpdateDto.SpecialTag;
                     item.Category = menuItemUpdateDto.Category;
 
                     _db.MenuItems.Update(item);

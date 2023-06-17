@@ -15,7 +15,6 @@ namespace GroceryAPI.Models
         [Required]
         [MaxLength(255)]
         public string Description { get; set; }
-        public string SpecialTag { get; set; }
         [Required]
         [MaxLength(100)]
         public string Category { get; set; }
