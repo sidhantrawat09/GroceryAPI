@@ -57,6 +57,7 @@ namespace GroceryAPI.Controllers
                     FullName = registerRequestDto.Name,
                     Email = registerRequestDto.UserName,
                     NormalizedEmail = registerRequestDto.UserName.ToUpper(),
+                    PhoneNumber = registerRequestDto.PhoneNumber,
                 };
 
                 var result = await _userManager.CreateAsync(newUser, registerRequestDto.Password);
