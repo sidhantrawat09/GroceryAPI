@@ -4,7 +4,7 @@ namespace GroceryAPI.Models
 {
     public class CartItem
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public int MenuItemId { get; set; }
         [ForeignKey(nameof(MenuItemId))]
         public MenuItem MenuItem { get; set; }

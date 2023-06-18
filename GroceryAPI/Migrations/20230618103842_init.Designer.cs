@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GroceryAPI.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20230617090628_AddedOrderHeaderAndOrderDetail")]
-    partial class AddedOrderHeaderAndOrderDetail
+    [Migration("20230618103842_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -94,8 +94,11 @@ namespace GroceryAPI.Migrations
 
             modelBuilder.Entity("GroceryAPI.Models.CartItem", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("MenuItemId")
                         .HasColumnType("int");
@@ -152,9 +155,6 @@ namespace GroceryAPI.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("SpecialTag")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Specification")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -171,10 +171,9 @@ namespace GroceryAPI.Migrations
                             Category = "Appetizer",
                             Description = "Fusc tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
                             Discount = 0m,
-                            Image = "https://temp.blob.core.windows.net/redmango/spring roll.jpg",
+                            Image = "",
                             Price = 7.9900000000000002,
-                            ProductName = "Spring Roll",
-                            SpecialTag = ""
+                            ProductName = "Spring Roll"
                         },
                         new
                         {
@@ -183,10 +182,9 @@ namespace GroceryAPI.Migrations
                             Category = "Appetizer",
                             Description = "Fusc tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
                             Discount = 0m,
-                            Image = "https://temp.blob.core.windows.net/redmango/idli.jpg",
+                            Image = "",
                             Price = 8.9900000000000002,
-                            ProductName = "Idli",
-                            SpecialTag = ""
+                            ProductName = "Idli"
                         },
                         new
                         {
@@ -195,10 +193,9 @@ namespace GroceryAPI.Migrations
                             Category = "Appetizer",
                             Description = "Fusc tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
                             Discount = 0m,
-                            Image = "https://temp.blob.core.windows.net/redmango/pani puri.jpg",
+                            Image = "",
                             Price = 8.9900000000000002,
-                            ProductName = "Panu Puri",
-                            SpecialTag = "Best Seller"
+                            ProductName = "Panu Puri"
                         },
                         new
                         {
@@ -207,10 +204,9 @@ namespace GroceryAPI.Migrations
                             Category = "Entrée",
                             Description = "Fusc tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
                             Discount = 0m,
-                            Image = "https://temp.blob.core.windows.net/redmango/hakka noodles.jpg",
+                            Image = "",
                             Price = 10.99,
-                            ProductName = "Hakka Noodles",
-                            SpecialTag = ""
+                            ProductName = "Hakka Noodles"
                         },
                         new
                         {
@@ -219,10 +215,9 @@ namespace GroceryAPI.Migrations
                             Category = "Entrée",
                             Description = "Fusc tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
                             Discount = 0m,
-                            Image = "https://temp.blob.core.windows.net/redmango/malai kofta.jpg",
+                            Image = "",
                             Price = 12.99,
-                            ProductName = "Malai Kofta",
-                            SpecialTag = "Top Rated"
+                            ProductName = "Malai Kofta"
                         },
                         new
                         {
@@ -231,10 +226,9 @@ namespace GroceryAPI.Migrations
                             Category = "Entrée",
                             Description = "Fusc tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
                             Discount = 0m,
-                            Image = "https://temp.blob.core.windows.net/redmango/paneer pizza.jpg",
+                            Image = "",
                             Price = 11.99,
-                            ProductName = "Paneer Pizza",
-                            SpecialTag = ""
+                            ProductName = "Paneer Pizza"
                         },
                         new
                         {
@@ -243,10 +237,9 @@ namespace GroceryAPI.Migrations
                             Category = "Entrée",
                             Description = "Fusc tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
                             Discount = 0m,
-                            Image = "https://temp.blob.core.windows.net/redmango/paneer tikka.jpg",
+                            Image = "",
                             Price = 13.99,
-                            ProductName = "Paneer Tikka",
-                            SpecialTag = "Chef's Special"
+                            ProductName = "Paneer Tikka"
                         },
                         new
                         {
@@ -255,10 +248,9 @@ namespace GroceryAPI.Migrations
                             Category = "Dessert",
                             Description = "Fusc tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
                             Discount = 0m,
-                            Image = "https://temp.blob.core.windows.net/redmango/carrot love.jpg",
+                            Image = "",
                             Price = 4.9900000000000002,
-                            ProductName = "Carrot Love",
-                            SpecialTag = ""
+                            ProductName = "Carrot Love"
                         },
                         new
                         {
@@ -267,10 +259,9 @@ namespace GroceryAPI.Migrations
                             Category = "Dessert",
                             Description = "Fusc tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
                             Discount = 0m,
-                            Image = "https://temp.blob.core.windows.net/redmango/rasmalai.jpg",
+                            Image = "",
                             Price = 4.9900000000000002,
-                            ProductName = "Rasmalai",
-                            SpecialTag = "Chef's Special"
+                            ProductName = "Rasmalai"
                         },
                         new
                         {
@@ -279,10 +270,9 @@ namespace GroceryAPI.Migrations
                             Category = "Dessert",
                             Description = "Fusc tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
                             Discount = 0m,
-                            Image = "https://temp.blob.core.windows.net/redmango/sweet rolls.jpg",
+                            Image = "",
                             Price = 3.9900000000000002,
-                            ProductName = "Sweet Rolls",
-                            SpecialTag = "Top Rated"
+                            ProductName = "Sweet Rolls"
                         });
                 });
 

@@ -59,45 +59,29 @@ namespace GroceryAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<ApiResponse>> AddOrUpdateItemInCart(string userId, int menuItemId, int updateQuantityBy)
         {
-            ShoppingCart shoppingCart = _db.ShoppingCarts.Include(u => u.CartItems).FirstOrDefault(u => u.UserId == userId);
-            MenuItem menuItem = _db.MenuItems.FirstOrDefault(u => u.Id == menuItemId);
-            if (menuItem == null)
+            try
             {
-                _response.StatusCode = HttpStatusCode.BadRequest;
-                _response.IsSuccess = false;
-                return BadRequest(_response);
-            }
-            if (shoppingCart == null && updateQuantityBy > 0)
-            {
-                //create a shopping cart & add cart item
-
-                ShoppingCart newCart = new() { UserId = userId };
-                _db.ShoppingCarts.Add(newCart);
-                _db.SaveChanges();
-
-                CartItem newCartItem = new()
+                ShoppingCart shoppingCart = _db.ShoppingCarts.Include(u => u.CartItems).FirstOrDefault(u => u.UserId == userId);
+                MenuItem menuItem = _db.MenuItems.FirstOrDefault(u => u.Id == menuItemId);
+                if (menuItem == null)
                 {
-                    MenuItemId = menuItemId,
-                    Quantity = updateQuantityBy,
-                    ShoppingCartId = newCart.Id,
-                    MenuItem = null
-                };
-                _db.CartItems.Add(newCartItem);
-                _db.SaveChanges();
-            }
-            else
-            {
-                //shopping cart exists
-
-                CartItem cartItemInCart = shoppingCart.CartItems.FirstOrDefault(u => u.MenuItemId == menuItemId);
-                if (cartItemInCart == null)
+                    _response.StatusCode = HttpStatusCode.BadRequest;
+                    _response.IsSuccess = false;
+                    return BadRequest(_response);
+                }
+                if (shoppingCart == null && updateQuantityBy > 0)
                 {
-                    //item does not exist in current cart
+                    //create a shopping cart & add cart item
+
+                    ShoppingCart newCart = new() { UserId = userId };
+                    _db.ShoppingCarts.Add(newCart);
+                    _db.SaveChanges();
+
                     CartItem newCartItem = new()
                     {
                         MenuItemId = menuItemId,
                         Quantity = updateQuantityBy,
-                        ShoppingCartId = shoppingCart.Id,
+                        ShoppingCartId = newCart.Id,
                         MenuItem = null
                     };
                     _db.CartItems.Add(newCartItem);
@@ -105,26 +89,59 @@ namespace GroceryAPI.Controllers
                 }
                 else
                 {
-                    //item already exist in the cart and we have to update quantity
-                    int newQuantity = cartItemInCart.Quantity + updateQuantityBy;
-                    if (updateQuantityBy == 0 || newQuantity <= 0)
+                    //shopping cart exists
+
+                    CartItem cartItemInCart = shoppingCart.CartItems.FirstOrDefault(u => u.MenuItemId == menuItemId);
+                    if (cartItemInCart == null)
                     {
-                        //remove cart item from cart and if it is the only item then remove cart
-                        _db.CartItems.Remove(cartItemInCart);
-                        if (shoppingCart.CartItems.Count() == 1)
+                        //item does not exist in current cart
+                        CartItem newCartItem = new()
                         {
-                            _db.ShoppingCarts.Remove(shoppingCart);
+                            MenuItemId = menuItemId,
+                            Quantity = updateQuantityBy,
+                            ShoppingCartId = shoppingCart.Id,
+                            MenuItem = null
+                        };
+                        try
+                        {
+                            _db.CartItems.Add(newCartItem);
+                            _db.SaveChanges();
                         }
-                        _db.SaveChanges();
+                        catch (Exception ex)
+                        {
+
+                            return BadRequest();
+                        }
+
                     }
                     else
                     {
-                        cartItemInCart.Quantity = newQuantity;
-                        _db.SaveChanges();
+                        //item already exist in the cart and we have to update quantity
+                        int newQuantity = cartItemInCart.Quantity + updateQuantityBy;
+                        if (updateQuantityBy == 0 || newQuantity <= 0)
+                        {
+                            //remove cart item from cart and if it is the only item then remove cart
+                            _db.CartItems.Remove(cartItemInCart);
+                            if (shoppingCart.CartItems.Count() == 1)
+                            {
+                                _db.ShoppingCarts.Remove(shoppingCart);
+                            }
+                            _db.SaveChanges();
+                        }
+                        else
+                        {
+                            cartItemInCart.Quantity = newQuantity;
+                            _db.SaveChanges();
+                        }
                     }
                 }
+                return _response;
             }
-            return _response;
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
 
         }
     }
